@@ -17,6 +17,8 @@ import com.desafio.apifinances.models.Transaction;
 import com.desafio.apifinances.repository.AccountRepository;
 import com.desafio.apifinances.repository.TransactionRepository;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value="/api")
 public class TransactionResource {
@@ -28,6 +30,7 @@ public class TransactionResource {
 	AccountRepository accountRepository;
 	
 	@GetMapping("/transaction/extract/{startDate}/{endDate}/{account}")
+	@ApiOperation(value="Retorna um extrato das transações realizadas no período escolhido")
 	public List<Transaction> getExtract(@PathVariable("startDate") String startDate, @PathVariable("endDate") String endDate, @PathVariable("account") long account){
 		LocalDate start = LocalDate.parse(startDate);
 		LocalDate end = LocalDate.parse(endDate);
@@ -48,7 +51,8 @@ public class TransactionResource {
 	}
 	
 	@PostMapping("/transaction/{id}/{number}")
-	public Object createAccount(@RequestBody Transaction transaction, @PathVariable("id") long id, @PathVariable(required = false) int number) {
+	@ApiOperation(value="Cria uma nova transação")
+	public Object createTransaction(@RequestBody Transaction transaction, @PathVariable("id") long id, @PathVariable(required = false) int number) {
 		Account account = accountRepository.findById(id);
 		switch (transaction.getType()) {
 		
