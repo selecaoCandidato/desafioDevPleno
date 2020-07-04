@@ -1,14 +1,17 @@
 package com.desafio.apifinances.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -26,10 +29,23 @@ public class Transaction implements Serializable {
 	private String type;
 	
 	@ManyToOne
+	@JoinColumn(name="account_id")
 	private Account account;
 	
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
     private Date createdDate;
+	
+	
+
+	public Transaction(long id, Double value, String type, Account account, Date createdDate) {
+		super();
+		this.id = id;
+		this.value = value;
+		this.type = type;
+		this.account = account;
+		this.createdDate = createdDate;
+	}
 
 	public long getId() {
 		return id;

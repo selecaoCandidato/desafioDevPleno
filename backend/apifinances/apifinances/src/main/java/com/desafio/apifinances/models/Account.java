@@ -1,13 +1,13 @@
 package com.desafio.apifinances.models;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,26 +19,39 @@ public class Account implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Customer customer;
+	private int number;
 	
-	private Double number;
+	private String responsible;
 	
-	private Double balance;
+	@OneToMany
+	private List<Transaction> transactions;
+	
+	private Double balance = 0.0;
+	
+	public Account() {
+	}
 
 	public long getId() {
 		return id;
+	}
+
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public Double getNumber() {
+	public int getNumber() {
 		return number;
 	}
 
-	public void setNumber(Double number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 
@@ -50,14 +63,13 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getResponsible() {
+		return responsible;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setResponsible(String responsible) {
+		this.responsible = responsible;
 	}
-	
 	
 	
 }

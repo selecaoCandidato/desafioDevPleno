@@ -1,7 +1,6 @@
 package com.desafio.apifinances.resources;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,24 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafio.apifinances.models.Account;
+import com.desafio.apifinances.models.Transaction;
 import com.desafio.apifinances.repository.AccountRepository;
+import com.desafio.apifinances.repository.TransactionRepository;
 
 @RestController
 @RequestMapping(value="/api")
-public class AccountResource {
-
+public class TransactionResource {
+	
+	@Autowired
+	TransactionRepository transactionsRepository;
+	
 	@Autowired
 	AccountRepository accountRepository;
 	
-	@GetMapping("/account/{number}")
-	public Account getExistingAccount(@PathVariable("number") int number) {
-		Account account = accountRepository.findByNumber(number);
-		return account;
-	}
-	
-	
-	@PostMapping("/account")
-	public Object createAccount(@RequestBody Account account) {
-		return accountRepository.save(account);
+	@PostMapping("/transaction/{id}")
+	public Transaction createAccount(@RequestBody Transaction transaction, @PathVariable("id") long id) {
+		Account account = accountRepository.findById(id);
+		transaction.setAccount(account);
+		System.out.print(account);
+		return transactionsRepository.save(transaction);
 	}
 }
