@@ -22,11 +22,49 @@ public class TransactionResource {
 	@Autowired
 	AccountRepository accountRepository;
 	
-	@PostMapping("/transaction/{id}")
-	public Transaction createAccount(@RequestBody Transaction transaction, @PathVariable("id") long id) {
+	@PostMapping("/transaction/{id}/{number}")
+	public Object createAccount(@RequestBody Transaction transaction, @PathVariable("id") long id, @PathVariable(required = false) int number) {
 		Account account = accountRepository.findById(id);
-		transaction.setAccount(account);
-		System.out.print(account);
-		return transactionsRepository.save(transaction);
+		switch (transaction.getType()) {
+			case "debit":
+				Double atualBalance = account.getBalance();
+				Double finalBalance = atualBalance + transaction.getValue();
+				account.setBalance(finalBalance);
+				accountRepository.save(account);
+				return account;
+			case "credit":
+				if (account.getBalance() < transaction.getValue()) {
+					return "Você não possui saldo suficiente para esta transação";
+				}else {
+					Double balance = account.getBalance();
+					Double resultBalance = balance - transaction.getValue();
+					account.setBalance(resultBalance);
+					accountRepository.save(account);
+					return account;
+				}
+			case "transfer":
+				if (account.getBalance() < transaction.getValue()) {
+					return "Você não possui saldo suficiente para esta transação";
+				}else {
+					Account transferAccount = accountRepository.findByNumber(number);
+					
+					if (transferAccount != null) {
+						Double balance = account.getBalance();
+						Double resultBalance = balance - transaction.getValue();
+						account.setBalance(resultBalance);
+						accountRepository.save(account);
+						
+						Double balanceTransfered = transferAccount.getBalance();
+						Double resultBalanceTransfered = balanceTransfered + transaction.getValue();
+						transferAccount.setBalance(resultBalanceTransfered);
+						accountRepository.save(transferAccount);
+						return transferAccount;
+					}else {
+						return "A conta destino não existe";
+					}
+					
+				}
+		}
+		return "";
 	}
 }
