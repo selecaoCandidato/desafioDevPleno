@@ -38,6 +38,10 @@ public class Transaction implements Serializable {
 	
 	
 
+	public Transaction() {
+	}
+	
+
 	public Transaction(long id, Double value, String type, Account account, Date createdDate) {
 		super();
 		this.id = id;
@@ -46,6 +50,8 @@ public class Transaction implements Serializable {
 		this.account = account;
 		this.createdDate = createdDate;
 	}
+
+
 
 	public long getId() {
 		return id;
