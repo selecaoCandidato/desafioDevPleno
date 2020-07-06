@@ -6,10 +6,11 @@
         <Form action="#" @submit="handleEntry">
           <Input type="text" v-model="name" name="name" placeholder="Insira aqui o seu nome" />
           <Input type="text" v-model="number" name="number" placeholder="Insira aqui o número da sua conta" />
-          <form-button type="submit" v-on:click="handleEntry">
+          
+        </Form>
+        <form-button type="submit" v-on:click="handleEntry">
             Entrar
           </form-button>
-        </Form>
         <p>Obs: Se a conta não existir ela será criada automaticamente</p>
       </form-container>
     </container>

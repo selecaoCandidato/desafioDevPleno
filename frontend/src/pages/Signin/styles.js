@@ -54,7 +54,8 @@ export const FormButton = styled.button`
     padding: 6px;
     border-radius: 6px;
     height: 30px;
-    width: 100%;
+    width: 380px;
+    margin-left: 12px;
     margin-top: 10px;
     color: #FFF;
     background: #7159c1;

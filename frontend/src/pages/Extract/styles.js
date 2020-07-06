@@ -3,8 +3,6 @@ import styled from 'vue-styled-components';
 export const Container = styled.div`
     background: #7159c1;
     border-radius: 10px;
-    justify-content: center;
-    align-items: center;
     padding-bottom: 20px;
     padding-top: 5px;
 `;
@@ -20,7 +18,7 @@ export const ExtractInfo = styled.div`
     border-radius: 6px;
     width: 300px;
     height: 600px;
-    margin: 0 auto;
+    margin: auto;
     margin-bottom: 20px;
     padding-top: 10px;
     display: flex;
@@ -28,6 +26,10 @@ export const ExtractInfo = styled.div`
     padding-left: 30px;
     padding-right: 30px;
     justify-content: center;
+`;
+
+export const ExtractContainer = styled.div`
+    padding-right: 23px;
 `;
 
 export const ExtractTitle = styled.h1`
