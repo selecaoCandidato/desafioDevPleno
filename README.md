@@ -1,33 +1,31 @@
-# desafio
-Desafio para avaliação de candidato
+# Instruções para instalação do Back-end
+* Baixar os arquivos da pasta backend
+* Se possível utilizar a IDE Eclipse para importar o projeto como Maven
+* Instalar as dependências (Se for no Eclipse esse passo executará automaticamente)
+* Configurar um banco de dados postgresSQL na porta 5432
+* Criar uma Base de dados com o nome "desafio_finances"
+* Editar o arquivo "application.properties" na pasta "src/main/resources"
 
-### Instruções para o desafio
-- O candidato deverá criar um fork no git e criar uma branch com o nome e sobrenome do canditado(ex: desafio_Jose_Silva) para o desenvolvimento da atividade;
-- O projeto deverá ser divido em dois pacotes, um do front-end e um do back-end;
-- O front deverá ser feito em Vue.js e o back deverá ser feito com spring boot;
-- Fica a critério do candidato a implementar testes unitários;
-- Histórico de commit será levado em consideração para acompanhamento da evolução do desafio, onde iremos avaliar o passo a passo desde a criação do projeto, criação dos pacotes back e front, criação dos serviços, criação das funcionalidades, etc. Portanto sugerimos que a cada passo realizado seja feito um commit com um comentário explicativo do que foi realizado, exemplo:
-    - Commit 1- Criação da estrutura inicial do projeto;
-    - Commit 2- Criação do pacote back-end;
-    - Commit 3- Criação do pacote front-end;
-    - Commit 4- Criação das entidades de persistência;
-    - Commit x- Criação da funcionalidade Criar Licitação;
-- Ao final do desafio, criar um documento explicando como configurar e subir a aplicação;
+````
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
 
+spring.datasource.url= jdbc:postgresql://localhost:5432/desafio_finances
 
-### Desafio
-- Desenvolver uma aplicação web responsável por simular ações básicas de uma conta bancaria.
-- Criar conta
-    - Deve conter os atributos
-        - número conta
-        - responsável
-        - saldo
+spring.datasource.username=nome_exemplo
 
-- Movimentações
-    - Realizar deposito
-    - Realizar saque
-    - Realizar transferência
-	- Incluir
+spring.datasource.password=senha_exemplo
 
-- Exibir extrato por (Dia/Mês/Intervalo)
-    - deve detalhar as movimentações
+spring.jpa.hibernate.ddl-auto=update
+
+spring.datasource.driverClassName=org.postgresql.Driver
+
+````
+ * Entrar na pasta "src/main/java", no pacote "com.desafio.apifinances" rodar o arquivo da pasta como Java Application
+
+# Instruções para instalação do Front-end
+
+* Baixar a pasta do projeto frontend
+* Rodar o comando yarn para instalar todas as dependências
+* Rodar o comando yarn serve para iniciar o servidor de desenvolvimento
+
+Made with 💜 by [Arthur Ramires](https://github.com/arthurramires) 🚀
