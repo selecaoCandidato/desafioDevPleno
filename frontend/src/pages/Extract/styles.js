@@ -15,7 +15,7 @@ export const Title = styled.h1`
     text-align: center;
 `;
 
-export const BalanceInfo = styled.div`
+export const ExtractInfo = styled.div`
     background: #FFF;
     border-radius: 6px;
     width: 300px;
@@ -30,26 +30,13 @@ export const BalanceInfo = styled.div`
     justify-content: center;
 `;
 
-export const Form = styled.form`
-`;
-
-export const BalanceValue = styled.h1`
+export const ExtractTitle = styled.h1`
     color: #000;
     font-size: 30px;
-`;
-
-export const Input = styled.input`
-    padding: 6px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    height: 20px;
-    width: 286px;
-    margin-top: 10px;
-    margin-bottom: 10px;
     text-align: center;
 `;
 
-export const FormButton = styled.button`
+export const ExtractButton = styled.button`
     padding: 6px;
     border-radius: 6px;
     height: 30px;
@@ -61,15 +48,32 @@ export const FormButton = styled.button`
     cursor: pointer;
 `;
 
-export const ExtractButton = styled.button`
-    padding: 6px;
+export const Extract = styled.div`
+    background: #FFF;
     border-radius: 6px;
-    height: 30px;
-    width: 100%;
-    margin-top: 10px;
-    color: #7159c1;
+    width: 300px;
+    height: 600px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow-y: scroll;
+`;
+
+export const ExtractItem = styled.div`
     background: transparent;
+    border-radius: 6px;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
     border: 1px solid #7159c1;
-    font-weight: bold;
-    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
 `;

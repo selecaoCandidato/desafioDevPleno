@@ -2,7 +2,7 @@
     <container>
       <Title>Olá, {{ name }}<br> Qual transação gostaria de realizar hoje?</Title>
       <balance-info>
-        <balance-value>Saldo: 200</balance-value>
+        <balance-value>Saldo: {{ balance.balance }}</balance-value>
         <Form action="#" @submit="handleCreateTransaction">
           <Input type="number" v-model="value" name="value" placeholder="Insira aqui o valor da transação" />
           <Input type="number" v-model="destinyAccountNumber" name="destinyAccountNumber" placeholder="Se for transferir, insira a conta destino" />
@@ -11,16 +11,21 @@
             Realizar Transação
           </form-button>
         </Form>
+        <p>------------------------- ou --------------------------</p>
+        <extract-button type="button" v-on:click="navigateToExtract">
+            Visualizar extrato da conta
+        </extract-button>
       </balance-info>
     </container>
 </template>
 
 <script>
-import { Container, Title, BalanceInfo, BalanceValue, Form, FormButton, Input} from './styles.js';
+import { Container, Title, BalanceInfo, BalanceValue, Form, FormButton, Input, ExtractButton} from './styles.js';
 import Balance from '../../services/balance';
 import vSelect from 'vue-select';
 import Vue from 'vue';
 import 'vue-select/dist/vue-select.css';
+import router from '../../router';
 
 Vue.component('v-select', vSelect)
 export default {
@@ -50,7 +55,8 @@ export default {
     BalanceValue,
     Form,
     FormButton,
-    Input
+    Input,
+    ExtractButton
   },
 
   methods: {
@@ -59,7 +65,7 @@ export default {
     },
 
     handleCreateTransaction() {
-       event.preventDefault();
+      event.preventDefault();
       const id = this.balance.id;
 
       switch (this.type) {
@@ -85,6 +91,10 @@ export default {
           });
           break;
       }
+    },
+
+    navigateToExtract() {
+      router.push('extract');
     }
   } 
 }

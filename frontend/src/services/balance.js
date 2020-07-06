@@ -15,5 +15,13 @@ export default {
                 'Content-Type': 'application/json'
             }
         });
-     }
+    },
+
+    handleExtract: async (startDate, endDate, id) => {
+        return api.get(`/transaction/extract/${startDate}/${endDate}/${id}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
 }
